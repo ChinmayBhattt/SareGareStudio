@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
+import toast from 'react-hot-toast';
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+
+        if (!email) {
+            toast.error('Please enter your email address');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { error } = await supabase
+                .from('subscribers')
+                .insert([{ email }]);
+
+            if (error) {
+                if (error.code === '23505') { // Unique violation code
+                    toast.error('You are already subscribed!');
+                } else {
+                    console.error('Subscription error:', error);
+                    toast.error('Failed to subscribe. Please try again.');
+                }
+            } else {
+                toast.success('Successfully subscribed to the newsletter!');
+                setEmail('');
+            }
+        } catch (error) {
+            console.error('Unexpected error:', error);
+            toast.error('Something went wrong.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <footer id="contact" className="bg-black border-t border-white/10 pt-16 pb-8">
             <div className="container mx-auto px-6">
@@ -63,14 +102,20 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-bold text-white mb-6">Join the Movement</h3>
                         <p className="text-gray-400 mb-4">Subscribe for updates on new beats and offers.</p>
-                        <form className="flex flex-col gap-3">
+                        <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
                             <input
                                 type="email"
                                 placeholder="Your Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition-colors"
                             />
-                            <button className="px-6 py-3 rounded-lg bg-brand-purple text-white font-bold hover:bg-brand-purple/80 transition-all">
-                                Subscribe
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="px-6 py-3 rounded-lg bg-brand-purple text-white font-bold hover:bg-brand-purple/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading ? 'Subscribing...' : 'Subscribe'}
                             </button>
                         </form>
                     </div>

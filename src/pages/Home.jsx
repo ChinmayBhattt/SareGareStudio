@@ -23,6 +23,9 @@ const Home = () => {
         } else if (location.pathname === '/contact') {
             const element = document.getElementById('contact');
             if (element) element.scrollIntoView({ behavior: 'smooth' });
+        } else if (location.pathname === '/sponsors') {
+            const element = document.getElementById('sponsors');
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
         }
     }, [location]);
 

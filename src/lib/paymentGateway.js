@@ -43,7 +43,7 @@ export const initiateRazorpayPayment = async ({
   }
 
   const options = {
-    key: RAZORPAY_KEY_ID || 'rzp_test_placeholder', // Using placeholder for demo
+    key: RAZORPAY_KEY_ID,
     amount: amount, // Amount in paise (cents)
     currency: 'INR',
     name: 'SareGare Studio',
@@ -130,20 +130,19 @@ export const initiateStripePayment = async ({
   }
 
   try {
-    const stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY || 'pk_test_placeholder');
+    const stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY);
     
     // TODO: Create payment intent on backend
-    // For now, this is a placeholder
+    // In production, this should call a Supabase Edge Function to create a payment intent
+    // and redirect to Stripe Checkout or use Stripe Elements
     console.log('Stripe payment initiated for order:', orderId);
     console.log('Amount:', amount, 'Product:', productName, 'License:', licenseType);
     
-    // Placeholder success (in production, this would be handled by Stripe)
-    setTimeout(() => {
-      onSuccess({
-        stripe_payment_id: 'stripe_placeholder_' + orderId,
-        orderId: orderId,
-      });
-    }, 1000);
+    // Alert user that Stripe integration needs backend implementation
+    console.warn('Stripe payment requires backend implementation. Please configure Supabase Edge Functions.');
+    onFailure({ 
+      error: 'Stripe payment requires backend configuration. Please contact support or use Razorpay.' 
+    });
   } catch (error) {
     console.error('Error initiating Stripe payment:', error);
     onFailure(error);

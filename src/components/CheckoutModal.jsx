@@ -83,6 +83,12 @@ function CheckoutModal({ product, licenseType, onClose }) {
   };
 
   const handlePaymentSuccess = async (paymentData) => {
+    // TODO: Verify payment on backend and update order status
+    // This should call a Supabase Edge Function to:
+    // 1. Verify payment signature/webhook
+    // 2. Update order status to 'completed'
+    // 3. Create transaction record
+    // 4. Send confirmation email
     toast.success('Payment successful! You can now download your track.');
     onClose();
     // Optionally refresh orders or redirect to downloads page

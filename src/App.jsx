@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Account from './pages/Account';
 import JoinTeam from './pages/JoinTeam';
+import Marketplace from './pages/Marketplace';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/marketplace" element={<Marketplace />} />
           <Route
             path="/account"
             element={

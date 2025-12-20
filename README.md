@@ -1,20 +1,60 @@
-# React + Vite
+# SareGare Studio - Walkthrough
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I have successfully built the "SareGare Studio" website, a premium, modern, and dark-themed music studio platform.
 
-Currently, two official plugins are available:
+## Key Features Implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. **Modern Aesthetics**
+- **Dark Mode**: Deep charcoal/black background (`bg-brand-dark`) for a studio vibe.
+- **Glassmorphism**: Translucent cards and navbar using backdrop filters.
+- **Neon Accents**: Brand colors (Purple, Blue, Gold) used in gradients and glows.
+- **Typography**: Inter for readability and Montserrat for bold headings.
 
-## React Compiler
+### 2. **Core Sections**
+- **Navbar**: Sticky, transparent-to-glass effect on scroll, mobile-responsive menu.
+- **Hero**: Full-screen landing with animated background blobs and gradient text.
+- **About**: Team section featuring Chinmay Bhatt, Manya, and Harsh Mochi with social links.
+- **Services**: Grid layout showcasing recording, mixing, distribution, etc., using key icons.
+- **Footer**: Includes contact info, social links, and "Powered by Hacker's Unity" credit.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 3. **Technical Stack**
+- **Framework**: React (Vite)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion (Scroll reveals, hover effects)
+- **Routing**: React Router DOM (Single Page App structure with hash navigation for smooth scrolling)
+- **SEO**: React Helmet Async (Meta tags managed per page)
 
-## Expanding the ESLint configuration
+### 4. **Fixes**
+- **Navigation**: Updated all buttons to use hash links (`#about`, `#services`) to ensure smooth scrolling to sections on the single page, resolving the issue where buttons were unresponsive.
+- **Footer**: Added `shrink-0` to footer icons (Email, Phone) to prevent them from disappearing or shrinking on smaller screens or when content is long.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# SareGareStudio
-# SareGareStudioV2.0
-# SareGareStudioV2.0
-# SareGareProductions
+## Verification Results
+
+### Build Status
+The project builds successfully for production:
+```bash
+$ npm run build
+✓ built in 1.39s
+```
+
+### Mobile Responsiveness
+- The Navbar collapses into a hamburger menu on small screens.
+- Grid layouts (Services, Team) stack vertically on mobile.
+- Font sizes adjust for smaller viewports.
+
+## How to Run
+
+1. **Install Dependencies** (if not already done):
+   ```bash
+   npm install
+   ```
+2. **Start Development Server**:
+   ```bash
+   npm run dev
+   ```
+3. **Build for Production**:
+   ```bash
+   npm run build
+   ```
+
+The website is ready for deployment! 🚀

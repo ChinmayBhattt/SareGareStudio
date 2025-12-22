@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Account from './pages/Account';
 import JoinTeam from './pages/JoinTeam';
+import PartnerWithUs from './pages/PartnerWithUs';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             />
             {/* Add other routes as placeholders or redirect to home for now */}
             <Route path="/join-team" element={<JoinTeam />} />
+            <Route path="/partner-with-us" element={<PartnerWithUs />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>

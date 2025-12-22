@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import MusicShowcase from '../components/Music/MusicShowcase';
 import About from '../components/About';
 import Services from '../components/Services';
+import PartnerCTA from '../components/PartnerCTA';
 import Events from '../components/Events';
 import Sponsors from '../components/Sponsors';
 import JoinCTA from '../components/JoinCTA';
@@ -51,6 +52,7 @@ const Home = () => {
                     <MusicShowcase />
                     <Events />
                     <Services />
+                    <PartnerCTA />
                     <About />
                     <Sponsors />
                     <JoinCTA />

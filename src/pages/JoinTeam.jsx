@@ -7,6 +7,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const JoinTeam = () => {
+    // Scroll to top on mount
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         full_name: '',

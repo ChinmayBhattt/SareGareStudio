@@ -2,8 +2,10 @@ import React, { createContext, useContext, useState, useRef, useEffect, useMemo,
 import { songs } from '../data/music';
 
 const MusicContext = createContext();
+const MusicProgressContext = createContext();
 
 export const useMusic = () => useContext(MusicContext);
+export const useMusicProgress = () => useContext(MusicProgressContext);
 
 export const MusicProvider = ({ children }) => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -112,8 +114,6 @@ export const MusicProvider = ({ children }) => {
     currentSong,
     isPlaying,
     volume,
-    progress,
-    duration,
     isPlayerVisible,
     isExpanded,
     playSong,
@@ -128,8 +128,6 @@ export const MusicProvider = ({ children }) => {
     currentSong,
     isPlaying,
     volume,
-    progress,
-    duration,
     isPlayerVisible,
     isExpanded,
     playSong,
@@ -142,9 +140,16 @@ export const MusicProvider = ({ children }) => {
     closePlayer
   ]);
 
+  const progressValue = useMemo(() => ({
+    progress,
+    duration
+  }), [progress, duration]);
+
   return (
     <MusicContext.Provider value={value}>
-      {children}
+      <MusicProgressContext.Provider value={progressValue}>
+        {children}
+      </MusicProgressContext.Provider>
     </MusicContext.Provider>
   );
 };

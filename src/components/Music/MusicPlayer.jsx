@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Volume2, Maximize2, X } from 'lucide-react';
-import { useMusic } from '../../context/MusicContext';
+import { useMusic, useMusicProgress } from '../../context/MusicContext';
 import LyricsView from './LyricsView';
 
 const MusicPlayer = () => {
@@ -11,8 +11,6 @@ const MusicPlayer = () => {
         togglePlay,
         nextSong,
         prevSong,
-        progress,
-        duration,
         seek,
         volume,
         changeVolume,
@@ -21,6 +19,8 @@ const MusicPlayer = () => {
         toggleExpanded,
         closePlayer
     } = useMusic();
+
+    const { progress, duration } = useMusicProgress();
 
     // Local state for smooth scrubbing
     const [isDragging, setIsDragging] = React.useState(false);

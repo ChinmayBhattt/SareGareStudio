@@ -1,14 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Play, Pause, SkipBack, SkipForward } from 'lucide-react';
-import { useMusic } from '../../context/MusicContext';
+import { useMusic, useMusicProgress } from '../../context/MusicContext';
 
 const LyricsView = () => {
     const {
         currentSong,
         toggleExpanded,
-        progress,
-        duration,
         isPlaying,
         togglePlay,
         nextSong,
@@ -16,6 +14,8 @@ const LyricsView = () => {
         seek,
         color // Access song color or context color if needed
     } = useMusic();
+
+    const { progress, duration } = useMusicProgress();
 
     const lyricsContainerRef = useRef(null);
 

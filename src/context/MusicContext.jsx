@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { songs } from '../data/music';
 
 const MusicContext = createContext();
@@ -36,9 +36,9 @@ export const MusicProvider = ({ children }) => {
       audio.removeEventListener('timeupdate', updateProgress);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, []); // Empty dependency array as we want this to run once on mount
 
-  const playSong = (song) => {
+  const playSong = useCallback((song) => {
     if (currentSong?.id === song.id) {
       togglePlay();
       return;
@@ -47,80 +47,103 @@ export const MusicProvider = ({ children }) => {
     const audio = audioRef.current;
     audio.src = song.audio;
     audio.volume = volume;
-    audio.play();
+    audio.play()
+      .then(() => {
+        setIsPlaying(true);
+        setIsPlayerVisible(true);
+      })
+      .catch(e => console.error("Error playing audio:", e));
 
     setCurrentSong(song);
-    setIsPlaying(true);
-    setIsPlayerVisible(true);
-  };
+  }, [currentSong, volume]); // Added dependencies
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
       if (!currentSong) return;
-      audio.play();
+      audio.play()
+        .then(() => setIsPlaying(true))
+        .catch(e => console.error("Error resuming audio:", e));
     }
-    setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying, currentSong]);
 
-  const seek = (time) => {
+  const seek = useCallback((time) => {
     const audio = audioRef.current;
     if (isFinite(time)) {
       audio.currentTime = time;
       setProgress(time);
     }
-  };
+  }, []);
 
-  const changeVolume = (val) => {
+  const changeVolume = useCallback((val) => {
     const audio = audioRef.current;
     audio.volume = val;
     setVolume(val);
-  };
+  }, []);
 
-  const nextSong = () => {
+  const nextSong = useCallback(() => {
     if (!currentSong) return;
     const currentIndex = songs.findIndex(s => s.id === currentSong.id);
     const nextIndex = (currentIndex + 1) % songs.length;
     playSong(songs[nextIndex]);
-  };
+  }, [currentSong, playSong]);
 
-  const prevSong = () => {
+  const prevSong = useCallback(() => {
     if (!currentSong) return;
     const currentIndex = songs.findIndex(s => s.id === currentSong.id);
     const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
     playSong(songs[prevIndex]);
-  };
+  }, [currentSong, playSong]);
 
-  const toggleExpanded = () => setIsExpanded(!isExpanded);
+  const toggleExpanded = useCallback(() => setIsExpanded(prev => !prev), []);
 
-  const closePlayer = () => {
+  const closePlayer = useCallback(() => {
     const audio = audioRef.current;
     audio.pause();
     setIsPlaying(false);
     setIsPlayerVisible(false);
     setCurrentSong(null);
-  };
+  }, []);
+
+  const value = useMemo(() => ({
+    currentSong,
+    isPlaying,
+    volume,
+    progress,
+    duration,
+    isPlayerVisible,
+    isExpanded,
+    playSong,
+    togglePlay,
+    seek,
+    changeVolume,
+    nextSong,
+    prevSong,
+    toggleExpanded,
+    closePlayer
+  }), [
+    currentSong,
+    isPlaying,
+    volume,
+    progress,
+    duration,
+    isPlayerVisible,
+    isExpanded,
+    playSong,
+    togglePlay,
+    seek,
+    changeVolume,
+    nextSong,
+    prevSong,
+    toggleExpanded,
+    closePlayer
+  ]);
 
   return (
-    <MusicContext.Provider value={{
-      currentSong,
-      isPlaying,
-      volume,
-      progress,
-      duration,
-      isPlayerVisible,
-      isExpanded,
-      playSong,
-      togglePlay,
-      seek,
-      changeVolume,
-      nextSong,
-      prevSong,
-      toggleExpanded,
-      closePlayer
-    }}>
+    <MusicContext.Provider value={value}>
       {children}
     </MusicContext.Provider>
   );

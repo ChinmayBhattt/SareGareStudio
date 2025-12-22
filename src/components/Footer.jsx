@@ -89,6 +89,17 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-bold text-white mb-6">Contact Us</h3>
                         <ul className="space-y-4 text-gray-400">
+                            <li className="flex items-start gap-3">
+                                <MapPin className="w-5 h-5 text-brand-purple shrink-0 mt-1" />
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=Adarsh+Nagar,+link+road+Ajaad+Bhawan,+Dungarpur,+314001"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    Adarsh Nagar, link road Ajaad Bhawan, Dungarpur, 314001
+                                </a>
+                            </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-brand-purple shrink-0" />
                                 <a href="mailto:saregarestudio@gmail.com" className="hover:text-white transition-colors break-all">saregarestudio@gmail.com</a>

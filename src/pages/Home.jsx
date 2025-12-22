@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import MusicShowcase from '../components/Music/MusicShowcase';
 import About from '../components/About';
 import Services from '../components/Services';
 import Events from '../components/Events';
@@ -47,6 +48,7 @@ const Home = () => {
                 <Navbar />
                 <main>
                     <Hero />
+                    <MusicShowcase />
                     <Events />
                     <Services />
                     <About />

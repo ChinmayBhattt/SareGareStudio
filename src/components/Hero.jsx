@@ -39,7 +39,7 @@ const Hero = () => {
                 <div
                     className="absolute inset-0 w-[120%] h-full hero-moving-bg"
                     style={{
-                        backgroundImage: 'url(/src/images/herobackground.webp)',
+                        backgroundImage: 'url(/images/herobackground.webp)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',

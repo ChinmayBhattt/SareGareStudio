@@ -26,28 +26,6 @@ const sponsors = [
         logo: harshbiteImg,
         url: 'https://www.instagram.com/swad_official04',
     },
-    // Duplicate for seamless loop if needed, but framer motion handles repeat differently.
-    // However, for a true seamless marquee with few items, repeating the list is often necessary.
-    {
-        name: 'Dostea',
-        logo: dosteaImg,
-        url: 'https://www.instagram.com/dostea07/',
-    },
-    {
-        name: 'Trainzex Ai',
-        logo: trainzexImg,
-        url: 'https://trainzexai.in',
-    },
-    {
-        name: "Hacker's Unity",
-        logo: hackersUnityImg,
-        url: 'https://hackersunity.vercel.app',
-    },
-    {
-        name: 'Harshbite',
-        logo: harshbiteImg,
-        url: 'https://www.instagram.com/swad_official04',
-    },
 ];
 
 const Sponsors = () => {
@@ -67,13 +45,13 @@ const Sponsors = () => {
                 <motion.div
                     className="flex py-10"
                     animate={{
-                        x: [0, -960],
+                        x: [0, "-25%"],
                     }}
                     transition={{
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 20,
+                            duration: 25,
                             ease: "linear",
                         },
                     }}

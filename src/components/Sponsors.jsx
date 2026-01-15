@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import dosteaImg from '../images/dostea.png';
 import trainzexImg from '../images/trainzexai.png';
 import hackersUnityImg from '../images/Hacker_s_Unity.png';
+import harshbiteImg from '../images/harshbite.png';
 
 const sponsors = [
     {
@@ -20,6 +21,11 @@ const sponsors = [
         logo: hackersUnityImg,
         url: 'https://hackersunity.vercel.app',
     },
+    {
+        name: 'Harshbite',
+        logo: harshbiteImg,
+        url: 'https://www.instagram.com/swad_official04',
+    },
     // Duplicate for seamless loop if needed, but framer motion handles repeat differently.
     // However, for a true seamless marquee with few items, repeating the list is often necessary.
     {
@@ -36,6 +42,11 @@ const sponsors = [
         name: "Hacker's Unity",
         logo: hackersUnityImg,
         url: 'https://hackersunity.vercel.app',
+    },
+    {
+        name: 'Harshbite',
+        logo: harshbiteImg,
+        url: 'https://www.instagram.com/swad_official04',
     },
 ];
 

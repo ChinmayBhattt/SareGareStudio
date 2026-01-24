@@ -84,7 +84,7 @@ const Footer = () => {
                             ))}
                             <li>
                                 <a
-                                    href="https://calendly.com/chinmaybhatt26/30min"
+                                    href="https://calendly.com/chinmaybhatt/30min?month=2026-01"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 text-brand-gold font-bold hover:text-white transition-all transform hover:translate-x-1 hover:shadow-lg"
